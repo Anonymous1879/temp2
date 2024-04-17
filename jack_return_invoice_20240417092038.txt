@@ -1,6 +1,0 @@
-Return Invoice for jack
-
-Land ID	Late Duration	Fine
-110	9	54000.0
-
-Total Fine: 54000.0
