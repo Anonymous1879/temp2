@@ -5,14 +5,14 @@ def load_lands_from_file(filename):
             for line in file:
                 data = line.split(',')
                 if validate_land_data(data):
-                    available_status = data[5].strip().lower()
+                    available_status = data[5].lower()
                     land = {
                         "id": int(data[0]),
                         "city": data[1],
                         "direction": data[2],
                         "anna": int(data[3]),
                         "price": int(data[4]),
-                        "available": available_status.startswith('available')
+                        "available": available_status.startswith(' available')
                     }
                     lands.append(land)
     except FileNotFoundError:
@@ -29,8 +29,8 @@ def validate_land_data(data):
         data[2]  # Direction
         int(data[3])  # Anna
         int(data[4])  # Price
-        available_status = data[5].strip().lower()
-        if available_status.startswith('available') or available_status.startswith('not available'):
+        available_status = data[5].lower()
+        if available_status.startswith(' available') or available_status.startswith(' not available'):
             return True
         else:
             print("Invalid availability status.")
