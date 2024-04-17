@@ -20,6 +20,18 @@ def validate_duration(prompt):
         except ValueError:
             print("Invalid input. Please enter a valid number.")
             return 0
+        
+def validate_late_duration(prompt):
+    while True:
+        try:
+            duration = int(input(prompt))
+            if duration >= 0:
+                return duration
+            else:
+                print("Late duration must be a non-negative number.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+            return 0
 
 def choose_land_id(lands, available=True):
     while True:
@@ -51,3 +63,23 @@ def choose_option():
                 print("Option not available")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
+
+def validate_land_data(data):
+    if len(data) != 6:
+        print("Invalid land data format.")
+        return False
+    try:
+        int(data[0])  # ID
+        data[1]  # City
+        data[2]  # Direction
+        int(data[3])  # Anna
+        int(data[4])  # Price
+        available_status = data[5].lower()
+        if available_status.startswith(' available') or available_status.startswith(' not available'):
+            return True
+        else:
+            print("Invalid availability status.")
+            return False
+    except ValueError:
+        print("Invalid land data values.")
+        return False

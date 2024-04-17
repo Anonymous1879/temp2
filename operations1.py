@@ -22,15 +22,10 @@ def start():
             print("Invalid choice. Please try again.")
 
 def welcome_screen():
-    print("+----------------------------------------+")
-    print("|     Welcome to TechnoPropertyNepal     |")
-    print("+----------------------------------------+")
-    print("| Option |         Action                |")
-    print("+--------+-------------------------------+")
-    print("|   1    |         Rent Land             |")
-    print("|   2    |         Return Land           |")
-    print("|   3    |         Exit                  |")
-    print("+--------+-------------------------------+")
+    print("Welcome to TechnoPropertyNepal")
+    print("1. Rent Land")
+    print("2. Return Land")
+    print("3. Exit")
 
 def display_lands(lands):
     print("Available Lands:")
@@ -75,14 +70,14 @@ def rent_land(lands):
         # Format the date and time
         formatted_date_time = now.strftime("%Y/%m/%d %H:%M:%S")
 
-        invoice_name = "{name}_rent_invoice_{timestamp}.txt".format(name=name, timestamp=timestamp)  # Add timestamp to invoice name
+        invoice_name = f"{name}_rent_invoice_{timestamp}.txt"  # Add timestamp to invoice name
         with open(invoice_name, "w") as file:
             file.write("+---------------------------------------------------------------------------------+\n")
             file.write("|                               TechnoPropertyNepal                               |\n")
             file.write("+---------------------------------------------------------------------------------+\n")
             file.write("|                                                                                 |\n")
-            file.write("|Rent Invoice for {name:<64}|\n".format(name=name))
-            file.write("|Date: {formatted_date_time:<75}|\n".format(formatted_date_time=formatted_date_time))
+            file.write(f"|Rent Invoice for {name:<64}|\n")
+            file.write(f"|Date: {formatted_date_time:<75}|\n")
             file.write("+------+--------------+---------------------+------+--------+----------+----------+\n")
             file.write("|  SN  |     ID       |        City         | Anna | Price  | Duration | Amount   |\n")
             file.write("+------+--------------+---------------------+------+--------+----------+----------+\n")
@@ -92,13 +87,10 @@ def rent_land(lands):
                 sn += 1
             file.write("+------+--------------+---------------------+------+--------+----------+----------+\n")
             file.write("|                                                                                 |\n")
-            file.write("|Total Amount: {total_amount:<67}|\n".format(total_amount=total_amount))
+            file.write(f"|Total Amount: {total_amount:<67}|\n")
             file.write("+---------------------------------------------------------------------------------+\n")
 
         print("Invoice created: " + invoice_name)
-        print("\nInvoice:\n")
-        with open(invoice_name, "r") as file:
-            print(file.read())
     else:
         print("No lands rented.")
 
@@ -136,14 +128,14 @@ def return_land(lands):
         # Format the date and time
         formatted_date_time = now.strftime("%Y/%m/%d %H:%M:%S")
 
-        invoice_name = "{name}_return_invoice_{timestamp}.txt".format(name=name, timestamp=timestamp)  # Add timestamp to invoice name
+        invoice_name = f"{name}_return_invoice_{timestamp}.txt"  # Add timestamp to invoice name
         with open(invoice_name, "w") as file:
             file.write("+--------------------------------------------------------------------------------------+\n")
             file.write("|                                 TechnoPropertyNepal                                  |\n")
             file.write("+--------------------------------------------------------------------------------------+\n")
             file.write("|                                                                                      |\n")
-            file.write("|Return Invoice for {name:<67}|\n".format(name=name))  # Adjusted spacing for name
-            file.write("|Date: {formatted_date_time:<80}|\n".format(formatted_date_time=formatted_date_time))  # Adjusted spacing for date
+            file.write(f"|Return Invoice for {name:<67}|\n")  # Adjusted spacing for name
+            file.write(f"|Date: {formatted_date_time:<80}|\n")  # Adjusted spacing for date
             file.write("|                                                                                      |\n")
             file.write("+------+--------------+---------------------+------+--------+---------------+----------+\n")
             file.write("|  SN  |     ID       |        City         | Anna | Price  | Late Duration |   Fine   |\n")
@@ -154,12 +146,10 @@ def return_land(lands):
                 sn += 1
             file.write("+------+--------------+---------------------+------+--------+---------------+----------+\n")
             file.write("|                                                                                      |\n")
-            file.write("|Total Fine: {total_fine:<74}|\n".format(total_fine=total_fine))  # Adjusted spacing for total fine
+            file.write(f"|Total Fine: {total_fine:<74}|\n")  # Adjusted spacing for total fine
             file.write("+--------------------------------------------------------------------------------------+\n")
 
+
         print("Invoice created: " + invoice_name)
-        print("\nInvoice:\n")
-        with open(invoice_name, "r") as file:
-            print(file.read())
     else:
         print("No lands returned.")

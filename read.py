@@ -1,10 +1,12 @@
+import validations
+
 def load_lands_from_file(filename):
     lands = []
     try:
         with open(filename, "r") as file:
             for line in file:
                 data = line.split(',')
-                if validate_land_data(data):
+                if validations.validate_land_data(data):
                     available_status = data[5].lower()
                     land = {
                         "id": int(data[0]),
@@ -18,23 +20,3 @@ def load_lands_from_file(filename):
     except FileNotFoundError:
         print(f"Error: {filename} file not found.")
     return lands
-
-def validate_land_data(data):
-    if len(data) != 6:
-        print("Invalid land data format.")
-        return False
-    try:
-        int(data[0])  # ID
-        data[1]  # City
-        data[2]  # Direction
-        int(data[3])  # Anna
-        int(data[4])  # Price
-        available_status = data[5].lower()
-        if available_status.startswith(' available') or available_status.startswith(' not available'):
-            return True
-        else:
-            print("Invalid availability status.")
-            return False
-    except ValueError:
-        print("Invalid land data values.")
-        return False
