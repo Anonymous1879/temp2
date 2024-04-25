@@ -1,25 +1,7 @@
 import validations
-import read
 import write
 import datetime
 
-def start():
-    lands = read.load_lands_from_file("land_data.txt")
-    
-    while True:
-        welcome_screen()
-        choice = validations.choose_option()
-        if choice == 1:
-            display_lands(lands)
-            rent_land(lands)
-        elif choice == 2:
-            display_lands(lands)
-            return_land(lands)
-        elif choice == 3:
-            print("Exiting TechnoPropertyNepal...")
-            break
-        else:
-            print("Invalid choice. Please try again.")
 
 def welcome_screen():
     print("+----------------------------------------+")

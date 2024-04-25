@@ -19,19 +19,21 @@ def validate_duration(prompt):
                 print("Duration must be a positive number.")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
-            return 0
         
 def validate_late_duration(prompt):
     while True:
+        late_duration_str = input(prompt)
         try:
-            duration = int(input(prompt))
-            if duration >= 0:
-                return duration
+            late_duration = int(late_duration_str)
+            if late_duration >= 0:
+                return late_duration
             else:
                 print("Late duration must be a non-negative number.")
         except ValueError:
-            print("Invalid input. Please enter a valid number.")
-            return 0
+            if late_duration_str.isdigit():  # Negative number
+                print("Late duration must be a non-negative number.")
+            else:  # Non-numeric input
+                print("Invalid input. Please enter a valid number.")
 
 def choose_land_id(lands, available=True):
     while True:
